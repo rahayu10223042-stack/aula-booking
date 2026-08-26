@@ -29,12 +29,12 @@ class AulaController extends Controller
             ->whereIn('status', Booking::STATUS_MENGUNCI_SLOT)
             ->get();
 
-        $events = $bookings->map(function (Booking $b) {
+        $events = $bookings->map(function (Booking $b) use ($aula) {
             return [
                 'title' => $b->status === 'pending' ? 'Pending' : 'Terpakai',
                 'start' => $b->tanggal->format('Y-m-d') . 'T' . $b->jam_mulai,
                 'end' => $b->tanggal->format('Y-m-d') . 'T' . $b->jam_selesai,
-                'color' => $b->status === 'pending' ? '#f59e0b' : '#dc2626',
+                'color' => $b->status === 'pending' ? '#F59E0B' : $aula->accentColor(),
             ];
         });
 

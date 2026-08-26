@@ -22,4 +22,18 @@ class Aula extends Model
     {
         return $this->hasMany(Booking::class);
     }
+
+    /**
+     * Warna identitas tiap aula, dipakai konsisten di kartu, kalender, dan badge
+     * supaya pegawai bisa langsung kenali aula dari warnanya di seluruh aplikasi.
+     */
+    public function accentColor(): string
+    {
+        return match ($this->slug) {
+            'wiradadaha' => '#4F46E5',        // indigo
+            'wiratanuningrat' => '#0D9488',   // teal
+            'wirahadiningrat' => '#CA8A04',   // gold
+            default => '#64748B',             // slate (fallback)
+        };
+    }
 }

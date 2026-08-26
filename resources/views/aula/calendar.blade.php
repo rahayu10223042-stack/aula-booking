@@ -1,23 +1,35 @@
-@extends('layouts.app')
+@extends('layouts.booking')
 @section('title', 'Kalender ' . $aula->nama)
 
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<style>
+    .fc { --fc-border-color: #E7EAF2; --fc-today-bg-color: rgba(79,70,229,0.06); font-family: 'Inter', sans-serif; }
+    .fc .fc-toolbar-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.15rem; }
+    .fc .fc-button-primary { background: var(--indigo); border-color: var(--indigo); border-radius: 8px; }
+    .fc .fc-button-primary:hover { background: #4338CA; }
+    .aula-dot { display: inline-block; width: 10px; height: 10px; border-radius: 999px; margin-right: 6px; }
+</style>
 @endpush
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>{{ $aula->nama }}</h3>
-        <a href="{{ route('booking.create', $aula->slug) }}" class="btn btn-success">+ Ajukan Booking</a>
+    <div class="page-heading justify-content-between" style="display:flex; align-items:center;">
+        <div>
+            <div class="eyebrow" style="display:flex; align-items:center;">
+                <span class="aula-dot" style="background: {{ $aula->accentColor() }};"></span> Kalender Ketersediaan
+            </div>
+            <h3 class="mb-0">{{ $aula->nama }}</h3>
+        </div>
+        <a href="{{ route('booking.create', $aula->slug) }}" class="btn btn-primary">+ Ajukan Booking</a>
     </div>
 
-    <div class="mb-3">
-        <span class="badge badge-pending">&nbsp;&nbsp;</span> Pending (menunggu approval) &nbsp;
-        <span class="badge badge-approved" style="background:#dc2626;">&nbsp;&nbsp;</span> Sudah dibooking (approved)
+    <div class="mb-3" style="font-size: 0.88rem; color: var(--ink-muted);">
+        <span class="badge badge-pending">&nbsp;&nbsp;</span> Pending (menunggu approval) &nbsp;&nbsp;
+        <span class="aula-dot" style="background: {{ $aula->accentColor() }};"></span> Sudah dibooking (approved)
     </div>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
+    <div class="card">
+        <div class="card-body p-4">
             <div id="calendar"></div>
         </div>
     </div>

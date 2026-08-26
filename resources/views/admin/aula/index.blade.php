@@ -1,13 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.booking')
 @section('title', 'Kelola Aula')
 
 @section('content')
-    <h3 class="mb-4">Kelola Data Aula</h3>
+    <div class="page-heading">
+        <div>
+            <div class="eyebrow">Admin</div>
+            <h3 class="mb-0">Kelola Data Aula</h3>
+        </div>
+    </div>
 
     @foreach ($aulas as $aula)
-        <div class="card mb-3 shadow-sm">
-            <div class="card-body">
-                <h5>{{ $aula->nama }}</h5>
+        <div class="card mb-3 overflow-hidden">
+            <div class="aula-accent-bar" style="background: {{ $aula->accentColor() }};"></div>
+            <div class="card-body p-4">
+                <h5 class="mb-3">{{ $aula->nama }}</h5>
                 <form method="POST" action="{{ route('admin.aula.update', $aula) }}" enctype="multipart/form-data">
                     @csrf @method('PATCH')
                     <div class="row g-3">

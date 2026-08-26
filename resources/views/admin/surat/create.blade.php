@@ -1,13 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.booking')
 @section('title', 'Catat Surat Manual')
 
 @section('content')
-    <h3 class="mb-4">Catat Surat Manual</h3>
-    <p class="text-muted">Untuk jenis surat yang dibuat/diketik manual (Word, dsb) di luar sistem ini.
+    <div class="page-heading">
+        <div>
+            <div class="eyebrow">Admin</div>
+            <h3 class="mb-0">Catat Surat Manual</h3>
+        </div>
+    </div>
+    <p style="color: var(--ink-muted);" class="mb-4">Untuk jenis surat yang dibuat/diketik manual (Word, dsb) di luar sistem ini.
         Isi form ini supaya suratnya tetap tercatat resmi dan mendapat nomor urut dari sistem.</p>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
+    <div class="card">
+        <div class="card-body p-4">
             <form method="POST" action="{{ route('admin.surat.store') }}">
                 @csrf
                 <div class="mb-3">
@@ -31,7 +36,7 @@
                     <label class="form-label">Keterangan</label>
                     <textarea name="keterangan" class="form-control"></textarea>
                 </div>
-                <button class="btn btn-primary">Catat & Ambil Nomor Surat</button>
+                <button class="btn btn-primary">Catat &amp; Ambil Nomor Surat</button>
             </form>
         </div>
     </div>

@@ -1,11 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.booking')
 @section('title', 'Ajukan Booking ' . $aula->nama)
 
 @section('content')
-    <h3 class="mb-4">Ajukan Booking — {{ $aula->nama }}</h3>
+    <div class="page-heading">
+        <div>
+            <div class="eyebrow">Ajukan Booking</div>
+            <h3 class="mb-0">{{ $aula->nama }}</h3>
+        </div>
+    </div>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
+    <div class="card">
+        <div class="card-body p-4">
             <form method="POST" action="{{ route('booking.store', $aula->slug) }}">
                 @csrf
 
